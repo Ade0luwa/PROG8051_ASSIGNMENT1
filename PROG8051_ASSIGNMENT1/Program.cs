@@ -2,17 +2,17 @@
 {
     public static void Main(string[] args)
     {
-        string animal1 = "Dog";
-        string animal2 = "Cat";
+        string animal1 = "Lion";
+        string animal2 = "Tiger";
         string animal3 = "Rabbit";
         string petName;
 
         Console.WriteLine("Welcome to Adeoluwatomiwa Pet Simulator");
         Console.WriteLine("It is good to have you here");
         Console.WriteLine("Please select the kind of pet you want from the options provided below");
-        Console.WriteLine("1. Dog");
-        Console.WriteLine("2. Cat");
-        Console.WriteLine("3. Rabbit");
+        Console.WriteLine($"1. {animal1}");
+        Console.WriteLine($"2. {animal2}");
+        Console.WriteLine($"3. {animal3}");
         int petSelected = Convert.ToInt32(Console.ReadLine()); // this collects the input string from the user and converts to an integer
 
 
