@@ -18,6 +18,7 @@ class Program
         int minHunger = 1;
         int maxHappiness = 10;
         int minHappiness = 1;
+        int time = 0;
         bool actionsChoice = true;
 
 
@@ -89,20 +90,8 @@ class Program
                 health = minHealth;
             }
 
-            // Checks for critical status
-            else if (hunger >= 9)
-            {
-                Console.WriteLine($"{petName} is extremely hungry right now. Be careful and feed {petName} immediately before you turn to a meal");
-            }
-            else if (happiness <= 2)
-            {
-                Console.WriteLine($"{petName} is very unhappy! Consider playing with {petName}.");
-            }
-            else if (health <= 2)
-            {
-                Console.WriteLine($"{petName}'s health is critical! Try resting {petName}");
-            }
-
+            
+            time++; //time is increased by 1 hour after every action.
 
             // Perform action based on user choice
             switch (actionSelected)
@@ -118,27 +107,26 @@ class Program
                     // condition to check if the health is full and does not need further addition
                     else if (health == maxHealth) 
                     {
-                        hunger = hunger - 2; //hunger decreases by 2 
+                        hunger-=2; //hunger decreases by 2 
                         Console.WriteLine($"Good work feeding {petName}. The health status is full and won't be affected.");
                     }
 
                     //if health is not maxed out and pet is not full, the below will be performed.
                     else
                     {
-                        hunger = hunger - 2; //hunger decrease by 2
-                        health = health + 1; //health is slightly increased by 1
+                        hunger-=2; //hunger decrease by 2
+                        health+=1; //health is slightly increased by 1
                         Console.WriteLine($"Good work feeding {petName}. The hunger has decreased and health has slightly improved.");                        
                     }
                     break;
 
                 case 2: // Playing increases the happiness of the pet but also increases the hunger level
-                    happiness = happiness + 2; //happiness increased
-                    hunger = hunger + 1; //hunger increased.
-
+                    happiness+=2; //happiness increased
+                    
                     if (happiness >= maxHappiness)
                     {
                         Console.WriteLine($"{petName} is extremely happy right now. Playing won't make him happier. Perform another activity!!");
-                    } 
+                    }
                     
                     // condition to check and send out a message when the hunger level of the pet has reached it's peak.
                     else if (hunger >= maxHunger)
@@ -149,13 +137,14 @@ class Program
 
                     else
                     {
+                        hunger += 1; //hunger increased.
                         Console.WriteLine($"Good work playing with your pet. {petName} is now happy but has gotten hungry a little bit.");
                     }
                     break;
 
                 case 3:
-                    health = health + 2; //improves health
-                    happiness = happiness - 1; //slightly decrease happiness
+                    health += 2; //improves health
+                    happiness-=1; //slightly decrease happiness
 
                     if (health >= maxHealth)
                     {
@@ -181,10 +170,27 @@ class Program
                     break;
 
                 default:
-                    Console.WriteLine("Invalid choice. Please enter a number from 1 to 5.");
+                    Console.WriteLine("Invalid choice. Please select a valid option.");
                     break;
             }
 
+            // Simulate the passage of time
+           // hunger = Math.Min(maxHunger, hunger + time); // Hunger is increased with the value of time. The minimum value is stored as the new value of hunger.
+           // happiness = Math.Max(minHappiness, happiness - 1); //Happiness is decreased by 1 after every hour.
+
+            // Conditions to check for critical status.
+            if (hunger >= 9)
+            {
+                Console.WriteLine($"{petName} is extremely hungry right now. Be careful and feed {petName} immediately before you turn to a meal");
+            }
+            else if (happiness <= 2)
+            {
+                Console.WriteLine($"{petName} is very unhappy! Consider playing with {petName}.");
+            }
+            else if (health <= 2)
+            {
+                Console.WriteLine($"{petName}'s health is very critical at the moment! Try resting {petName}");
+            }
         }
            
         }
