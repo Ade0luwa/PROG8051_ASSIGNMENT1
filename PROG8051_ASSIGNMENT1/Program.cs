@@ -9,9 +9,9 @@ class Program
         string animal3 = "Cheetah";
         string petName = "Ade";
         string applicationName = "Adeoluwatomiwa Pet Simulator";
-        int hunger = 8;
-        int happiness = 3;
-        int health = 2;
+        int hunger = 5;
+        int happiness = 5;
+        int health = 5;
         int maxHealth = 10;
         int minHealth = 1;
         int maxHunger = 10;
@@ -80,11 +80,27 @@ class Program
             {
                 happiness = maxHappiness;
             }
-            // condition to check and send out a message when the hunger level of the pet has reached it's peak.
-            else if (hunger > maxHunger || hunger == maxHunger)
+            else if (happiness < minHappiness)
             {
-                hunger = maxHunger;
-                Console.WriteLine($"{petName} is extremely hungry right now. Be careful and feed him immediately before you turn to a meal");
+                happiness = minHappiness;
+            }
+            else if (health < minHealth)
+            {
+                health = minHealth;
+            }
+
+            // Checks for critical status
+            else if (hunger >= 9)
+            {
+                Console.WriteLine($"{petName} is extremely hungry right now. Be careful and feed {petName} immediately before you turn to a meal");
+            }
+            else if (happiness <= 2)
+            {
+                Console.WriteLine($"{petName} is very unhappy! Consider playing with {petName}.");
+            }
+            else if (health <= 2)
+            {
+                Console.WriteLine($"{petName}'s health is critical! Try resting {petName}");
             }
 
 
@@ -116,20 +132,41 @@ class Program
                     break;
 
                 case 2: // Playing increases the happiness of the pet but also increases the hunger level
-                    if (happiness == maxHappiness)
+                    happiness = happiness + 2; //happiness increased
+                    hunger = hunger + 1; //hunger increased.
+
+                    if (happiness >= maxHappiness)
                     {
                         Console.WriteLine($"{petName} is extremely happy right now. Playing won't make him happier. Perform another activity!!");
+                    } 
+                    
+                    // condition to check and send out a message when the hunger level of the pet has reached it's peak.
+                    else if (hunger >= maxHunger)
+                    {
+                        hunger = maxHunger;
+                        //Console.WriteLine($"{petName} is extremely hungry right now. Be careful and feed him immediately before you turn to a meal");
                     }
+
                     else
                     {
-                        happiness = happiness + 2;
-                        hunger = hunger + 1;
                         Console.WriteLine($"Good work playing with your pet. {petName} is now happy but has gotten hungry a little bit.");
                     }
                     break;
 
                 case 3:
-                    
+                    health = health + 2; //improves health
+                    happiness = happiness - 1; //slightly decrease happiness
+
+                    if (health >= maxHealth)
+                    {
+                        health = maxHealth;
+                        Console.WriteLine($"{petName} has really rested a lot and has a full bar of health. Try performing some activities");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"{petName} has gotten some rest. health has improved but happiness has decreased");
+                    }
+                    break;
 
                 case 4:
                     Console.WriteLine($"{petName}'s Status:");
