@@ -6,12 +6,12 @@ class Program
     {
         string animal1 = "Lion";
         string animal2 = "Tiger";
-        string animal3 = "Rabbit";
+        string animal3 = "Cheetah";
         string petName = "Ade";
         string applicationName = "Adeoluwatomiwa Pet Simulator";
-        int hunger = 4;
-        int happiness = 5;
-        int health = 5;
+        int hunger = 8;
+        int happiness = 3;
+        int health = 2;
         int maxHealth = 10;
         int minHealth = 1;
         int maxHunger = 10;
@@ -75,12 +75,23 @@ class Program
             {
                 hunger = minHunger;
             }
+            //if happiness is greater than max happiness level, set the value of happiness to the max happiness possible
+            else if (happiness > maxHappiness)
+            {
+                happiness = maxHappiness;
+            }
+            // condition to check and send out a message when the hunger level of the pet has reached it's peak.
+            else if (hunger > maxHunger || hunger == maxHunger)
+            {
+                hunger = maxHunger;
+                Console.WriteLine($"{petName} is extremely hungry right now. Be careful and feed him immediately before you turn to a meal");
+            }
 
 
             // Perform action based on user choice
             switch (actionSelected)
             {
-                case 1:
+                case 1: //Feeding decreases hunger levels and slightly increases health of the pet
                     
                     // if condition to check if the pet is not hungry and does not need feeding
                     if (hunger == minHunger) 
@@ -104,8 +115,18 @@ class Program
                     }
                     break;
 
-                case 2:
-                    
+                case 2: // Playing increases the happiness of the pet but also increases the hunger level
+                    if (happiness == maxHappiness)
+                    {
+                        Console.WriteLine($"{petName} is extremely happy right now. Playing won't make him happier. Perform another activity!!");
+                    }
+                    else
+                    {
+                        happiness = happiness + 2;
+                        hunger = hunger + 1;
+                        Console.WriteLine($"Good work playing with your pet. {petName} is now happy but has gotten hungry a little bit.");
+                    }
+                    break;
 
                 case 3:
                     
