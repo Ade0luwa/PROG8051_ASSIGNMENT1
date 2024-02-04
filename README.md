@@ -12,6 +12,14 @@ Application Features
 3) A user can track and know the status of the pet and any point in time
 4) Neglecting your pet will also reflect in its status.
 
+SETUP INSTRUCTIONS
+
+1) Navigate this repository on GitHub
+
+2) Clone the repository
+
+3) Run the application on your IDE
+
 DEMO GUIDE ON HOW TO INTERACT WITH THE VIRTUAL PET SIMULATOR APPLICATION
 
 This is a guide on how to interact with the application after cloning and setting it up on your device. A video link demonstration is also attached below.
