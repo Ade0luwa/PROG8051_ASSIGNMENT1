@@ -234,3 +234,6 @@ Main Menu Options:
 3
 
 Mila has really rested a lot and has a full bar of health. Try performing some activities
+
+
+Video demo link: https://drive.google.com/file/d/1irxDbR8wv9ji8ePFtZOTl22Vpf-yrJNr/view?usp=drive_link
