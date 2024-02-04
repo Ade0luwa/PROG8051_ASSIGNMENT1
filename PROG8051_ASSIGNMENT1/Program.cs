@@ -18,7 +18,7 @@ class Program
         int minHunger = 1;
         int maxHappiness = 10;
         int minHappiness = 1;
-        int time = 0;
+        int time = 1;
         bool actionsChoice = true;
 
 
@@ -68,7 +68,8 @@ class Program
             Console.WriteLine($"2. Play with {petName}");
             Console.WriteLine($"3. Let {petName} rest");
             Console.WriteLine($"4. Check {petName}'s status");
-            Console.WriteLine("5. Exit the application");
+            Console.WriteLine($"5. Neglect {petName}");
+            Console.WriteLine("6. Exit the application");
             int actionSelected = Convert.ToInt32(Console.ReadLine());
 
             // if hunger decreases the minimum hunger, set the value of hunger to minHunger
@@ -90,8 +91,6 @@ class Program
                 health = minHealth;
             }
 
-            
-            time++; //time is increased by 1 hour after every action.
 
             // Perform action based on user choice
             switch (actionSelected)
@@ -165,6 +164,13 @@ class Program
                     break;
 
                 case 5:
+                    hunger += 1;
+                    happiness -= 1;
+                    health -= 1;
+                    Console.WriteLine($"You have decided to neglect {petName}. This has caused its health and happiness to reduce, and its hunger level to increase. Don't try it again");
+                    break;
+
+                case 6:
                     Console.WriteLine($"Thank you for using {applicationName}. Hope to see you soon");
                     Environment.Exit(0);
                     break;
@@ -174,9 +180,10 @@ class Program
                     break;
             }
 
-            // Simulate the passage of time
-           // hunger = Math.Min(maxHunger, hunger + time); // Hunger is increased with the value of time. The minimum value is stored as the new value of hunger.
-           // happiness = Math.Max(minHappiness, happiness - 1); //Happiness is decreased by 1 after every hour.
+
+            //passage of time simulation
+            hunger = hunger + time; // hunger increases every 1 hour
+            happiness = happiness - 1; //happiness decreases every 1 hour
 
             // Conditions to check for critical status.
             if (hunger >= 9)
